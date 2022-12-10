@@ -1,0 +1,30 @@
+{
+  "name": "cross-shard-transfer.sdk",
+  "version": "1.0.0",
+  "description": "cross-shard-transfer.sdk",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "test": "node lib/examples/example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harmony-one/cross-shard-transfer.sdk.git"
+  },
+  "author": "Harmony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harmony-one/cross-shard-transfer.sdk/issues"
+  },
+  "homepage": "https://github.com/harmony-one/cross-shard-transfer.sdk#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "tslib": "^1.10.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "bn.js": "^5.2.1",
+    "web3": "^1.8.1"
+  }
+}

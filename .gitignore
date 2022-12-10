@@ -1,0 +1,14 @@
+# node modules
+node_modules
+
+/lib
+/dist
+/cache
+/publish
+*.xml
+*.rar
+*.html
+*.tsbuildinfo
+api.txt
+.env
+db-connection.json
