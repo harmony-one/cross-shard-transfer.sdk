@@ -19,3 +19,5 @@ interface IHmyCrossShardParamsInternal extends IHmyCrossShardParamsBase {
 }
 
 export type IHmyCrossShardParams = IHmyCrossShardParamsMetamsk | IHmyCrossShardParamsInternal;
+
+export type SendTxCallback = (txHash: string) => void;

@@ -1,8 +1,7 @@
 import Web3 from 'web3';
 import { Contract } from 'web3-eth-contract';
-import { IHmyCrossShardParams, WALLET_TYPE } from './interfaces';
+import {IHmyCrossShardParams, SendTxCallback, WALLET_TYPE} from './interfaces';
 import { abi } from './abi';
-import { mulDecimals } from './helpers';
 
 export class HmyCrossShard {
     private gasLimit = 6721900;
@@ -38,7 +37,7 @@ export class HmyCrossShard {
         );
     }
 
-    public transfer = async (value: string | number, toAddress: string, shardId: 0 | 1) => {
+    public transfer = async (value: string | number, toAddress: string, shardId: 0 | 1, sendTxCallback?: SendTxCallback) => {
         let fromAddress;
 
         if (this.walletType === WALLET_TYPE.METAMASK) {
@@ -53,14 +52,12 @@ export class HmyCrossShard {
 
         const gasPrice = Math.max(this.gasPrice, Number(networkGasPrice));
 
-        const amount = mulDecimals(value, 18);
-
-        const res = await this.contract.methods.crossShardTransfer(amount, toAddress, shardId).send({
-            value: amount,
+        const res = await this.contract.methods.crossShardTransfer(value, toAddress, shardId).send({
+            value: value,
             from: fromAddress,
             gasLimit: this.gasLimit,
             gasPrice,
-        });
+        }).on('transactionHash', sendTxCallback);
 
         return res;
     }
